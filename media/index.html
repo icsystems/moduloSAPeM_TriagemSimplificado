@@ -1,0 +1,253 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.js"></script>
+		<script type="text/javascript" src="js/jquery.readonly.js"></script>
+		<script type="text/javascript" src="js/messages_ptbr.js"></script>
+		<script type="text/javascript" src="js/action.js"></script>
+		<style type='text/css'>
+		<!--
+			@import url(./css/page_style.css);
+			@import url(./css/form_style.css);
+			@import url(./css/smoothness/jquery-ui.css);
+			@import url(./css/readonly.css);
+			@import url(./css/styles.css);
+		-->
+		</style>
+		<title>Triagem de Pacientes</title>
+	</head>
+	<body>
+		<div id='mainFrame'>
+			<div id='content'>
+				<div id='maincontent'>
+				<form name='form_triagemGuadalupe' id='form_triagemGuadalupe' action='cgi-bin/submitForm' method='POST'>
+					<fieldset>
+						<div id='divDataConsulta' class='primary required'>
+							<label for='data_consulta'> Data da Triagem: </label>
+							<input type="text" name="data_consulta" id="data_consulta" class='textbox' readonly/>
+						</div>
+						<div id='divNumeroRegistro' class='primary required'>
+							<label for='numeroRegistro'> Número do Registro: </label>
+							<input type="text" name="numeroRegistro" id="numeroRegistro" class='textbox required'/>
+						</div>
+						<div id='divErroNumeroRegistro' name='divErroNumeroRegistro' class='erro secondary'>
+							<p id='erroNumeroRegistro' name='erroNumeroRegistro'></p>
+						</div>
+							<div id='divFrasesAjuda'>
+							<label for='frasesAjuda'> </label>
+								<p id='frasesAjuda' name='frasesAjuda'><b>Sempre pedir 2 BAAR e para trazer RX de Tórax</b></p>
+							</div>
+					</fieldset>
+					<fieldset id='info_pessoais'>
+						<legend>Informa&ccedil;&otilde;es Pessoais do Paciente</legend>
+						<div id='divNome' class='primary required'>
+							<label for='nome'> Nome: </label>
+							<input type="text" name="nome" id="nome" class='textbox required text'/>
+						</div>
+						<div id='divErroNome' name='divErroNome' class='erro secondary'>
+							<p id='erroNome' name='erroNome'></p>
+						</div>
+						<!--<div id='divCep' class='primary'>
+							<label for='cep'>CEP: </label>
+							<input type="text" name="cep" id="cep" size='10' maxlength='9' class='textbox'/>
+						</div>
+						<div id='divEstado' class='primary required'>
+							<label for='estado'>Estado: </label>
+							<select name="estado" id="estado" class='required address'>
+								<option value=''> ---- </option>
+							</select>
+						</div>
+						<div id='divErroEstado' name='divErroEstado' class='erro secondary'>
+							<p id='erroEstado' name='erroEstado'></p>
+						</div>
+						<div id='divCidade' class='primary required'>
+							<label for='cidade'>Cidade: </label>
+							<input type="text" name="cidade" id="cidade" class='textbox required text'/>
+						</div>
+						<div id='divErroCidade' name='divErroCidade' class='erro secondary'>
+							<p id='erroCidade' name='erroCidade'></p>
+						</div>
+						<div id='divBairro' class='primary required'>
+							<label for='bairro'>Bairro: </label>
+							<input type="text" name="bairro" id="bairro" class='textbox required text'/>
+						</div>
+						<div id='divErroBairro' name='divErroBairro' class='erro secondary'>
+							<p id='erroBairro' name='erroBairro'></p>
+						</div>-->
+						<div id='divEndereco' class='primary required'>
+							<label for='endereco'>Endere&ccedil;o: </label>
+							<input type="text" name="endereco" id="endereco" class='textbox required address'/>
+						</div>
+						<div id='divErroEndereco' name='divErroEndereco' class='erro secondary'>
+							<p id='erroEndereco' name='erroEndereco'></p>
+						</div>
+						<!--<div id='divNumero' class='primary'>
+							<label for='numero'>N&uacute;mero: </label>
+							<input type="text" name="numero" id="numero" class='textbox'/>
+						</div>
+						<div id='divComplemento' class='primary'>
+							<label for='complemento'>Complemento: </label>
+							<input type="text" name="complemento" id="complemento" class='textbox'/>
+						</div>-->
+						<div id='divTelefone' class='primary required'>
+							<label for='telefone'>Telefone para contato (associa&ccedil;ão de moradores, bar, igreja, etc): </label>
+							<input name="telefone" id="telefone" class='textbox required'/>
+						</div>
+						<div id='divErroTelefone' name='divErroTelefone' class='erro secondary'>
+							<p id='erroTelefone' name='erroTelefone'></p>
+						</div>
+						<div id='divPrimeiroExameBaar' class='primary required'>
+							<label for='primeiroExameBaar'>Resultado do primeiro exame de BAAR:  </label>
+							<select name="primeiroExameBaar" id="primeiroExameBaar" class='required textbox'/>
+								<option value=''>----</option>
+								<option value='naoRealizado'>Não Realizado</option>
+								<option value='positivo'>Positivo</option>
+								<option value='negativo'>Negativo</option>
+							</select>
+						</div>
+						<div id='divErroPrimeiroExameBaar' name='divErroPrimeiroExameBaar' class='erro secondary'>
+							<p id='erroPrimeiroExameBaar' name='erroPrimeiroExameBaar'></p>
+						</div>
+						<div id='divSegundoExameBaar' class='primary required'>
+							<label for='segundoExameBaar'>Resultado do segundo exame de BAAR:  </label>
+							<select name="segundoExameBaar" id="segundoExameBaar" class='required textbox'/>
+								<option value=''>----</option>
+								<option value='naoRealizado'>Não Realizado</option>
+								<option value='positivo'>Positivo</option>
+								<option value='negativo'>Negativo</option>
+							</select>
+						</div>
+						<div id='divErroSegundoExameBaar' name='divErroSegundoExameBaar' class='erro secondary'>
+							<p id='erroSegundoExameBaar' name='erroSegundoExameBaar'></p>
+						</div>
+					</fieldset>
+					<fieldset id='fieldsetEscore'>
+						<legend> Escore de suspei&ccedil;ão de TB</legend>
+						<div id='divFrasesAjudaSintomas'>
+						<label for='frasesAjudaSintomas'> </label>
+							<p id='frasesAjudaSintomas' name='frasesAjudaSintomas'><b>Favor preencher os resultados de BAAR</b></p>
+						</div><br />
+						<div class="primary" id="divPesoHabitual">
+							<label for="pesoHabitual" class="required">Peso Habitual:</label>
+							<input type="text" size="5" maxlength="5" class="number required sintomas" name="pesoHabitual" id="pesoHabitual"/> Kg
+						</div>
+						<div id='divErroPesoHabitual' name='divErroPesoHabitual' class='erro secondary'>
+							<p id='erroPesoHabitual' name='erroPesoHabitual'></p>
+						</div>
+						<div class="primary" id="divPesoAtual">
+							<label for="pesoAtual" class="required">Peso Atual:</label>
+							<input type="text" size="5" maxlength="5" class="number required sintomas" name="pesoAtual" id="pesoAtual"/> Kg
+						</div>
+						<div id='divErroPesoAtual' name='divErroPesoAtual' class='erro secondary'>
+							<p id='erroPesoAtual' name='erroPesoAtual'></p>
+						</div>
+						<div id='divSexo' class='primary required'>
+							<label for='sexo'>Sexo:</label>
+							<select name='sexo' id='sexo' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='masculino'> Masculino  </option>
+								<option value='feminino'> Feminino  </option>
+							</select>
+						</div>
+						<div id='divErroSexo' name='divErroSexo' class='erro secondary'>
+							<p id='erroSexo' name='divErroSexo'></p>
+						</div>
+						<div id='divDataNascimento' class='primary required'>
+							<label for='data_nascimento'> Data de Nascimento:</label>
+							<input  name="data_nascimento" id="data_nascimento" type="text" class='data required sintomas' readonly/>
+						</div>
+						<div id='divErroDataNascimento' name='divErroDataNascimento' class='erro secondary'>
+							<p id='erroDataNascimento' name='erroDataNascimento'></p>
+						</div>
+						<div id='divIdade' class='primary required'>
+							<label for='idade'> Idade: </label>
+							<input type="text" name="idade" id="idade" class='sintomas required' size='4' maxlength='3' readonly/>
+						</div>
+						<div id='divErroIdade' name='divErroIdade' class='erro secondary'>
+							<p id='erroIdade' name='erroIdade'></p>
+						</div>
+						<div id='divDorToracica' class='primary required'>
+							<label for='dorToracica'>Dor Torácica:</label>
+							<select name='dorToracica' id='dorToracica' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='nao'> N&atilde;o  </option>
+								<option value='sim'> Sim  </option>
+							</select>
+						</div>
+						<div id='divErroDorToracica' name='divErroDorToracica' class='erro secondary'>
+							<p id='erroDorToracica' name='erroDorToracica'></p>
+						</div>
+						<div id='divTosse' class='primary required'>
+							<label for='tosse'>Tosse:</label>
+							<select name='tosse' id='tosse' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='nao'> N&atilde;o  </option>
+								<option value='menos2semanas'> Menos de 2 semanas  </option>
+								<option value='mais2semanas'> Mais de 2 semanas  </option>
+							</select>
+						</div>
+						<div id='divErroTosse' name='divErroTosse' class='erro secondary'>
+							<p id='erroTosse' name='erroTosse'></p>
+						</div>
+						<div id='divExpectoracao' class='primary required'>
+							<label for='expectoracao'>Expectoração:</label>
+							<select name='espectoracao' id='expectoracao' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='nao'> N&atilde;o  </option>
+								<option value='menos2semanas'> Menos de 2 semanas  </option>
+								<option value='mais2semanas'> Mais de 2 semanas  </option>
+							</select>
+						</div>
+						<div id='divErroExpectoracao' name='divErroExpectoracao' class='erro secondary'>
+							<p id='erroExpectoracao' name='erroExpectoracao'></p>
+						</div>
+						<div id='divHemoptoico' class='primary required'>
+							<label for='hemoptoico'>Hemoptise:</label>
+							<select name='hemoptoico' id='hemoptoico' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='sim'> Sim  </option>
+								<option value='nao'> N&atilde;o  </option>
+							</select>
+						</div>
+						<div id='divErroHemoptoico' name='divErroHemoptoico' class='erro secondary'>
+							<p id='erroHemoptoico' name='erroHemoptoico'></p>
+						</div>
+						<div id='divSudorese' class='primary required'>
+							<label for='sudorese'>Sudorese Noturna:</label>
+							<select name='sudorese' id='sudorese' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='sim'> Sim  </option>
+								<option value='nao'> N&atilde;o  </option>
+							</select>
+						</div>
+						<div id='divErroSudorese' name='divErroSudorese' class='erro secondary'>
+							<p id='erroSudorese' name='erroSudorese'></p>
+						</div>
+						<div id='divFebre' class='primary required'>
+							<label for='febre'>Febre:</label>
+							<select name='febre' id='febre' class='sintomas required'>
+								<option value=''>----</option>
+								<option value='sim'> Sim  </option>
+								<option value='nao'> N&atilde;o  </option>
+							</select>
+						</div>
+						<div id='divErroFebre' name='divErroFebre' class='erro secondary'>
+							<p id='erroFebre' name='erroFebre'></p>
+						</div>
+					</fieldset>
+					<fieldset id='fieldsetResultadoTriagem'>
+						<div name='divResultadoTriagem' id='divResultadoTriagem'>
+							<p id='resultadoTriagem' name='resultadoTriagem'></p>
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class='submit'><input id="submitButton" value="Enviar Formulário"  class='inputButton'  type="submit"></div>
+					</fieldset>
+				</div><!--/maincontent-->
+			</div><!--/content-->
+		</div><!--/mainFrame-->
+	</body>
+</html>
