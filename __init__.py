@@ -15,20 +15,6 @@ def handle_request(request, fileName):
 	media_dir = os.path.join(curr_dir, 'media')
 	if fileName == '':
 		fileName = "index.html"
-	elif 'cgi-bin/autocomplete.py' in fileName:
-		service = request.REQUEST['service']
-		city = ''
-		if 'city' in request.REQUEST:
-			city = request.REQUEST['city']
-		state = ''
-		if 'state' in request.REQUEST:
-			state = request.REQUEST['state']
-		q = ''
-		if 'query' in request.REQUEST:
-			q = request.REQUEST['query']
-		return HttpResponse(ac.Main(service,city,state,q))
-	elif fileName == 'cgi-bin/runNet.py':
-		return HttpResponse(rn.runNet())
 	return static.serve(request, fileName, document_root=media_dir,
 	show_indexes=True)
 
