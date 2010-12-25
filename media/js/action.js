@@ -57,6 +57,61 @@ function calculateAge(dateStr){
 //After page is loaded set actions
 $(document).ready(function(){
 
+/*------------------------------------ Edition ------------------------------------------*/
+	//Make the urlbase (necessary case SAPeM migrate to another server)
+	var urlString = $(location).attr('href');
+	var urlArray = urlString.split('/');
+	var indexToRunUrlString = 0; 
+	var urlbase = '';
+	for (indexToRunUrlString in urlArray)
+		if (urlArray[indexToRunUrlString] == 'sapem')
+			var indexToRecord = indexToRunUrlString;
+	for (indexToRunUrlString in urlArray.slice(0,parseInt(indexToRecord,10) + 1))
+		if (indexToRunUrlString == 0)
+			urlbase += urlArray[indexToRunUrlString];
+		else
+			urlbase += '/' + urlArray[indexToRunUrlString];
+	urlbase += '/';
+
+	if (urlString.search("edit") != -1){
+		var fichaId = urlArray[urlArray.length-2];
+		var url = urlbase + 'ficha/' + fichaId + '/';
+		$.ajax({
+			type: 'POST',
+			url: url,
+			dataType: "html",
+			success: function(text){
+				if (window.DOMParser)
+				{
+					parser=new DOMParser();
+					xml=parser.parseFromString(text,"text/xml");
+				}else{ // Internet Explorer
+					xml=new ActiveXObject("Microsoft.XMLDOM");
+					xml.async="false";
+					xml.loadXML(text);
+				}
+				if (xml.getElementsByTagName('error')[0] == undefined){
+					var elements = xml.getElementsByTagName('documento')[0].childNodes;
+					if (urlString.search("edit") != -1){
+					//Edit
+						var elements = xml.getElementsByTagName('documento')[0].childNodes;
+						$(elements).each(function(){
+								var el = $(this).get(0);
+								if($(el)[0].nodeType == xml.ELEMENT_NODE){
+								var tagname = $(el)[0].tagName;
+								idDiv = $('#'+tagname).parent().attr('id');
+								//console.log(tagname + ' : ' + $(el).text());
+								var hlcolor = '#FFF8C6';
+								$('#'+tagname).val($(el).text());
+								$('#'+tagname).change();
+							}
+						});
+					}
+				}
+			}
+		});
+	}
+/*---------------------------------------------------------------------------------------*/
 /*------------------------------------ Score  -------------------------------------------*/
 	$.fn.countPoints = function(){
 
