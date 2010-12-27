@@ -318,7 +318,6 @@ $(document).ready(function(){
 	$('.sintomas').each(function(){
 			$(this).attr('disabled',true);
 	});
-	$('#data_nascimento').attr('disabled',false);
 	$('#idade').attr('disabled',false);
 	$('#fieldsetResultadoTriagem').hide();
 
