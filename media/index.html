@@ -50,6 +50,27 @@
 						<div id='divErroNome' name='divErroNome' class='erro secondary'>
 							<p id='erroNome' name='erroNome'></p>
 						</div>
+						<div id='divNome_mae' class='primary required'>
+							<label for='nome_mae'> Nome da Mãe: </label>
+							<input type="text" name="nome_mae" id="nome_mae" class='textbox required text'/>
+						</div>
+						<div id='divErroNome_mae' name='divErroNome_mae' class='erro secondary'>
+							<p id='erroNome_mae' name='erroNome_mae'></p>
+						</div>
+						<div id='divDataNascimento' class='primary required'>
+							<label for='data_nascimento'> Data de Nascimento:</label>
+							<input  name="data_nascimento" id="data_nascimento" type="text" class='data required sintomas' readonly/>
+						</div>
+						<div id='divErroDataNascimento' name='divErroDataNascimento' class='erro secondary'>
+							<p id='erroDataNascimento' name='erroDataNascimento'></p>
+						</div>
+						<div id='divIdade' class='primary required'>
+							<label for='idade'> Idade: </label>
+							<input type="text" name="idade" id="idade" class='sintomas required' size='4' maxlength='3' readonly/>
+						</div>
+						<div id='divErroIdade' name='divErroIdade' class='erro secondary'>
+							<p id='erroIdade' name='erroIdade'></p>
+						</div>
 						<!--<div id='divCep' class='primary'>
 							<label for='cep'>CEP: </label>
 							<input type="text" name="cep" id="cep" size='10' maxlength='9' class='textbox'/>
@@ -94,7 +115,7 @@
 						</div>-->
 						<div id='divTelefone' class='primary required'>
 							<label for='telefone'>Telefone para contato (associa&ccedil;ão de moradores, bar, igreja, etc): </label>
-							<input name="telefone" id="telefone" class='textbox required'/>
+							<input name="telefone" id="telefone" class='textbox required number'/>
 						</div>
 						<div id='divErroTelefone' name='divErroTelefone' class='erro secondary'>
 							<p id='erroTelefone' name='erroTelefone'></p>
@@ -154,20 +175,6 @@
 						</div>
 						<div id='divErroSexo' name='divErroSexo' class='erro secondary'>
 							<p id='erroSexo' name='divErroSexo'></p>
-						</div>
-						<div id='divDataNascimento' class='primary required'>
-							<label for='data_nascimento'> Data de Nascimento:</label>
-							<input  name="data_nascimento" id="data_nascimento" type="text" class='data required sintomas' readonly/>
-						</div>
-						<div id='divErroDataNascimento' name='divErroDataNascimento' class='erro secondary'>
-							<p id='erroDataNascimento' name='erroDataNascimento'></p>
-						</div>
-						<div id='divIdade' class='primary required'>
-							<label for='idade'> Idade: </label>
-							<input type="text" name="idade" id="idade" class='sintomas required' size='4' maxlength='3' readonly/>
-						</div>
-						<div id='divErroIdade' name='divErroIdade' class='erro secondary'>
-							<p id='erroIdade' name='erroIdade'></p>
 						</div>
 						<div id='divDorToracica' class='primary required'>
 							<label for='dorToracica'>Dor Torácica:</label>

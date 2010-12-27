@@ -316,8 +316,10 @@ $(document).ready(function(){
 /*------------------------------- Form logics --------------------------------------*/
 	//The sintoms and the message do not appear until result of baar exams are definied
 	$('.sintomas').each(function(){
-		$(this).attr('disabled',true);
+			$(this).attr('disabled',true);
 	});
+	$('#data_nascimento').attr('disabled',false);
+	$('#idade').attr('disabled',false);
 	$('#fieldsetResultadoTriagem').hide();
 
 	//Idade autocomplete
